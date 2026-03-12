@@ -128,8 +128,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       const safeName = path.basename(filename);
       const filePath = path.join(UPLOADS_DIR, safeName);
 
-      const dir = path.dirname(filePath);
-      if (!dir.startsWith(UPLOADS_DIR)) {
+      if (!filePath.startsWith(UPLOADS_DIR + path.sep) && filePath !== UPLOADS_DIR) {
         return {
           content: [{ type: "text", text: "Error: Invalid file path" }],
           isError: true,
